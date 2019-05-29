@@ -1,0 +1,13 @@
+.card {
+  height: 50px;
+  padding: 5px;
+  margin-bottom:50px;
+  margin-top:50px;
+  margin-left:100px;
+  background-color: black;
+  color: red;
+}
+
+.player {
+  padding: 50px;
+}
