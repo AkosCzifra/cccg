@@ -1,6 +1,6 @@
 #files n folders
 *.iml
-*.xml
+.idea/*.xml
 .idea
 .git
 

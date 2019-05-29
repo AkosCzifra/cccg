@@ -60,3 +60,16 @@
 }
 
 /* Playing Card CSS ENDS HERE */
+/* Drag and drop CSS TEST*/
+
+ .player_card{
+  /*background-image: url('https://source.unsplash.com/random/100x150');*/
+  position: relative;
+  height: 150px;
+  width: 100px;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+}
+
+/* Drag and drop CSS  ENDS HERE*/

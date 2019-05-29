@@ -29,32 +29,28 @@
     </div>
 
     <div class="row playerCards">
-        <div class="col-md-2 card">
-            player cards
+        <div class="col-md-2 card" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
         </div>
-        <div class="col-md-2 card">
-            player cards
+        <div class="col-md-2 card" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
         </div>
-        <div class="col-md-2 card">
-            player cards
+        <div class="col-md-2 card" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
         </div>
-        <div class="col-md-2 card">
-            player cards
+        <div class="col-md-2 card" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
         </div>
     </div>
 
     <div class="row inHandCards">
-        <div class="col-md-2 card" id="first-card">
-            inhand cards
+        <div class="col-md-2 card">
+            <div class="player_card" id="first-card" draggable="true" ondragstart="dragstartHandler(event)"></div>
         </div>
         <div class="col-md-2 card">
-            inhand cards
+            <div class="player_card" id="second-card" draggable="true" ondragstart="dragstartHandler(event)"></div>
         </div>
         <div class="col-md-2 card">
-            inhand cards
+            <div class="player_card" id="third-card" draggable="true" ondragstart="dragstartHandler(event)"></div>
         </div>
         <div class="col-md-2 card">
-            inhand cards
+            <div class="player_card" id="fourth-card" draggable="true" ondragstart="dragstartHandler(event)"></div>
         </div>
     </div>
     <div class="row player">player comes here
