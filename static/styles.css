@@ -1,13 +1,28 @@
-.card {
-  height: 150px;
-  padding: 5px;
-  margin-bottom:10px;
-  margin-top:10px;
-  margin-left:100px;
+.cccg {
+    height: 160px;
+    width: 110px;
+    padding: 3px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 80px;
+
+    background-color: #fff;
+    background-clip: border-box;
+
+    border: 2px solid darkred;
+    border-radius:.5rem;
+
+    /*word-wrap: break-word;*/
+    /*position: relative;*/
+    /*display: flex;*/
+    /*max-width: 8.333333%;*/
+    /*flex-direction: column;*/
+    /*min-width: 0;*/
+
 }
 
 .player {
-  padding: 50px;
+    padding: 50px;
 }
 
 /* Playing Card CSS FROM HERE */
@@ -15,6 +30,7 @@
 .playing-card {
     border-style: solid;
     border-width: 2px;
+    border-radius: .5rem;
     width: 100px;
     height: 150px;
     background-image: url("https://i.imgur.com/XERMOiE.png");
@@ -25,7 +41,7 @@
 .playing-card .power-number {
     position: relative;
     left: -40%;
-    top: 128px;
+    top: 124px;
     display: inline;
     color: dimgray;
 }
