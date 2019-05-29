@@ -56,3 +56,4 @@ function dropHandler (e) {
   dragged.setAttribute("draggable", "false");
   dragged.style.cursor = "not-allowed";
 }
+
