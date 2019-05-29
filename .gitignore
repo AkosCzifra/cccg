@@ -1,0 +1,6 @@
+#files n folders
+*.iml
+*.xml
+.idea
+.git
+
