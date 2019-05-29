@@ -1,13 +1,26 @@
-.card {
-  height: 150px;
-  padding: 5px;
-  margin-bottom:10px;
-  margin-top:10px;
-  margin-left:100px;
+.cccg {
+    height: 160px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 80px;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    position: relative;
+    display: flex;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+
+    /*width: 100%;*/
+    /*min-height: 1px;*/
+    padding: 5px;
+
 }
 
 .player {
-  padding: 50px;
+    padding: 50px;
 }
 
 /* Playing Card CSS FROM HERE */
