@@ -15,7 +15,7 @@ let cards = [
     },
     {
         "name": "Nemo3",
-        "power": 2,
+        "power": 6,
         "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
         "health": 6,
         "mana": 9,
@@ -32,7 +32,7 @@ let cards = [
 let enemyCards = [
     {
         "name": "Enem1",
-        "power": 2,
+        "power": 1,
         "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
         "health": 6,
         "mana": 9,
@@ -46,14 +46,14 @@ let enemyCards = [
     },
     {
         "name": "Enem3",
-        "power": 2,
+        "power": 6,
         "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
         "health": 6,
         "mana": 9,
     },
     {
         "name": "Enem4",
-        "power": 2,
+        "power": 8,
         "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
         "health": 6,
         "mana": 9,
