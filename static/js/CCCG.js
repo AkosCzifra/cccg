@@ -63,6 +63,7 @@ function createCard(cardData, hand) {
     }
 }
 
+
 function displayHealth() {
     let health = document.querySelector("#player-health");
     let playerHealth = health.dataset.health;
@@ -147,15 +148,24 @@ function defendingPlayer(attacker, defender) {
         if (attackHp <= 0) {
             attacker.parentElement.removeChild(attacker)
         }
+        else{
+            attacker.children[2].innerHTML = attackHp.toString();
+        }
+
         if (defender == null) {}
         else if (defendHp <= 0) {
             defender.parentElement.removeChild(defender)
         }
+        else {
+            defender.children[2].innerHTML = defendHp.toString();
+        }
+
         if (defender == null) {}
         else {
             defender.dataset.health = defendHp.toString();
         }
         attacker.dataset.health = attackHp.toString();
+
         return damageToPlayer;
 }
 
