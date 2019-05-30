@@ -37,7 +37,34 @@ createCard(
     "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
     6,
     9,
+    "#first-card");
+
+createCard(
+
+    "Nemo",
+    2,
+    "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
+    6,
+    9,
     "#second-card");
+
+createCard(
+
+    "Nemo",
+    2,
+    "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
+    6,
+    9,
+    "#third-card");
+
+createCard(
+
+    "Nemo",
+    2,
+    "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
+    6,
+    9,
+    "#fourth-card");
 
 let playerHealth = 100;
 
