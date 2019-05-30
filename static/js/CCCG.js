@@ -78,7 +78,7 @@ function displayHealth() {
 
 function damagePlayer(damage) {
     let currentHealth = document.querySelector("#player-health");
-    currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
+    currentHealth.dataset.health = (Math.round(parseInt(currentHealth.dataset.health) - damage)).toString();
     displayHealth();
     alert("You have been damaged!");
 }
@@ -116,12 +116,21 @@ function iniDragAndDrop() {
 }
 
 function defendingPlayer(attacker, defender) {
-    try {
         let damageToPlayer = 0,
-            attackHp = parseInt(attacker.dataset.health),
-            attackDmg = parseInt(attacker.dataset.power),
-            defendHp = parseInt(defender.dataset.health),
+        attackHp = parseInt(attacker.dataset.health),
+        attackDmg = parseInt(attacker.dataset.power),
+        defendHp = 0,
+        defendDmg = 0;
+        if (defender == null){
+            defendHp = 0}
+        else {
+            defendHp = parseInt(defender.dataset.health);
+        }
+        if (defender == null) {
+            defendDmg = 0}
+        else {
             defendDmg = parseInt(defender.dataset.power);
+        }
         if (attackDmg >= defendHp) {
             defendHp = (defendHp - attackDmg);
             damageToPlayer = (defendHp * -1)
@@ -138,39 +147,24 @@ function defendingPlayer(attacker, defender) {
         if (attackHp <= 0) {
             attacker.parentElement.removeChild(attacker)
         }
-        if (defendHp <= 0) {
+        if (defender == null) {}
+        else if (defendHp <= 0) {
             defender.parentElement.removeChild(defender)
         }
-        defender.dataset.health = defendHp.toString();
+        if (defender == null) {}
+        else {
+            defender.dataset.health = defendHp.toString();
+        }
         attacker.dataset.health = attackHp.toString();
         return damageToPlayer;
-    } catch (error) {
-        console.error("nothing happened keep playing!")
-    } finally {
-        return 0;
-    }
-
 }
 
 
 function doBattlePhase() {
-    let defenders = document.querySelectorAll(".defender");
-    let noDefenderDamage = 0;
-    for (let defender of defenders) {
-        if (defender.firstChild == null) {
-            for (let card of enemyCards) {
-                noDefenderDamage += card.power;
-            }
-        }
-    }
-    if (noDefenderDamage > 0) {
-        damagePlayer(noDefenderDamage / 4)
-    }
-
-    let attackerOne = document.querySelector("#enemy-card-one").firstChild,
-        attackerTwo = document.querySelector("#enemy-card-two").firstChild,
-        attackerThree = document.querySelector("#enemy-card-three").firstChild,
-        attackerFour = document.querySelector("#enemy-card-four").firstChild,
+    let attackerOne = document.querySelector("#enemy-card-1").firstChild,
+        attackerTwo = document.querySelector("#enemy-card-2").firstChild,
+        attackerThree = document.querySelector("#enemy-card-3").firstChild,
+        attackerFour = document.querySelector("#enemy-card-4").firstChild,
         defenderOne = document.querySelector("#position-1").firstChild,
         defenderTwo = document.querySelector("#position-2").firstChild,
         defenderThree = document.querySelector("#position-3").firstChild,
