@@ -4,6 +4,7 @@ function createCard(name, power, image, health, mana, position){
     card.setAttribute("draggable", "true");
     card.addEventListener("dragstart", function () {dragstartHandler(event)}, false);
     card.className = "playing-card";
+    card.setAttribute("draggable", "true");
     let cardName = document.createElement("div");
     cardName.textContent = name;
     cardName.className = "card-name";
@@ -34,12 +35,40 @@ function createCard(name, power, image, health, mana, position){
 }
 
 createCard(
+
+    "Nemo",
+    2,
+    "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
+    6,
+    9,
+    "#first-card");
+
+createCard(
+
     "Nemo",
     2,
     "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
     6,
     9,
     "#second-card");
+
+createCard(
+
+    "Nemo",
+    2,
+    "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
+    6,
+    9,
+    "#third-card");
+
+createCard(
+
+    "Nemo",
+    2,
+    "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
+    6,
+    9,
+    "#fourth-card");
 
 let playerHealth = 100;
 

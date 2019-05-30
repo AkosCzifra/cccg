@@ -6,11 +6,11 @@
     margin-top: 10px;
     margin-left: 80px;
 
-    background-color: #fff;
+    background-color: burlywood;
     background-clip: border-box;
 
     border: 2px solid darkred;
-    border-radius:.5rem;
+    border-radius: .5rem;
 
     /*word-wrap: break-word;*/
     /*position: relative;*/
@@ -18,11 +18,34 @@
     /*max-width: 8.333333%;*/
     /*flex-direction: column;*/
     /*min-width: 0;*/
+}
+
+.playerImage {
+    height: 200px;
+    width: 200px;
+    margin-left: 40px;
 
 }
 
-.player {
-    padding: 50px;
+.playerImage img {
+    position: center;
+    top: -28%;
+    left: 3%;
+    height: 200px;
+    width: 200px;
+    border-radius: 70%;
+}
+
+body {
+    background: url("https://mondrian.mashable.com/uploads%252Fcard%252Fimage%252F778575%252F7c05ce95-92d8-4f9b-87d7-7de65c97fbce.jpg%252F950x534__filters%253Aquality%252890%2529.jpg?signature=O_MA4nGR2FpElykY8ClbHI9HiZs=&source=https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com");
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+hr {
+    border: none;
+    background-color: deepskyblue;
 }
 
 /* Playing Card CSS FROM HERE */
