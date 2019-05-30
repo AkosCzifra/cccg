@@ -118,15 +118,18 @@ function dropHandler(e) {
     e.preventDefault();
     let id = e.dataTransfer.getData("id");
     let dragged = document.getElementById(id);
+    if (e.target.childElementCount > 0) {}
+    else {
     e.target.appendChild(dragged);
     dragged.setAttribute("draggable", "false");
     dragged.style.cursor = "not-allowed";
+    }
 }
 
 
 function iniDragAndDrop() {
     let combatSlots = document.querySelectorAll(".playerCards> div");
-    for (let slot of combatSlots) {
+    for (let slot of  combatSlots) {
         slot.addEventListener('drop', dropHandler);
         slot.addEventListener('dragover', dragoverHandler);
     }
@@ -153,7 +156,7 @@ function winCheck(counter){
         return 1;}
 }
 
-function defendingPlayer(attacker, defender) {
+function calculateBattle(attacker, defender) {
         let damageToPlayer = 0,
             damageToEnemy = 0,
         attackHp = parseInt(attacker.dataset.health),
@@ -220,10 +223,10 @@ function doBattlePhase() {
         defenderFour = document.querySelector("#position-4").firstChild;
 
 
-    let firstPhase = defendingPlayer(attackerOne, defenderOne),
-    secondPhase = defendingPlayer(attackerTwo, defenderTwo),
-    thirdPhase = defendingPlayer(attackerThree, defenderThree),
-    fourthPhase = defendingPlayer(attackerFour, defenderFour);
+    let firstPhase = calculateBattle(attackerOne, defenderOne),
+    secondPhase = calculateBattle(attackerTwo, defenderTwo),
+    thirdPhase = calculateBattle(attackerThree, defenderThree),
+    fourthPhase = calculateBattle(attackerFour, defenderFour);
 
     let damageToPlayer = firstPhase[0]+secondPhase[0]+thirdPhase[0]+fourthPhase[0];
     let damageToEnemy = firstPhase[1]+secondPhase[1]+thirdPhase[1]+fourthPhase[1];
