@@ -13,6 +13,7 @@ function createCard(name, power, image, health, mana, position){
     cardPower.className = "power-number";
     let cardImage = document.createElement("img");
     cardImage.src = `${image}`;
+    cardImage.ondragstart = function() { return false; };
     let cardHealth = document.createElement("div");
     cardHealth.textContent = health;
     cardHealth.className = "health-number";
