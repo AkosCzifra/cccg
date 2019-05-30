@@ -1,6 +1,6 @@
 function createCard(cardData) {
     let card = document.createElement("div");
-    card.id = "card";
+    card.id = "card" + cardData.name;
     card.setAttribute("draggable", "true");
     card.addEventListener("dragstart", function () {
         dragstartHandler(event)
@@ -50,13 +50,14 @@ function createCard(cardData) {
     }
 }
 
-function displayHealth(playerHealth) {
+function displayHealth() {
     let health = document.querySelector("#player-health");
+    let playerHealth = health.dataset.health;
 
     let image = document.createElement("img");
     image.src = "https://i.imgur.com/0XwkL3b.png";
 
-    health.textContent = `${playerHealth}`;
+    health.textContent = playerHealth;
     health.appendChild(image);
     health.style.backgroundSize = `${playerHealth}%`
 }
@@ -66,8 +67,9 @@ function dealDamage() {
 }
 
 function damagePlayer(damage) {
-    playerHealth = playerHealth - damage;
-    displayHealth(playerHealth);
+    let healthDiv = document.querySelector("#player-health");
+    healthDiv.textContent = (parseInt(healthDiv.dataset.health) - damage).toString();
+    displayHealth();
     alert("You have been damaged!");
 }
 
@@ -105,14 +107,11 @@ function iniDragAndDrop() {
 
 function main() {
     // TODO randomize cards
-    for (let card of cards.slice(0,4)) {
+    for (let card of cards.slice(0, 4)) {
         createCard(card)
     }
 
-    let playerHealth = 100;
-
-    displayHealth(playerHealth);
-
+    displayHealth();
     iniDragAndDrop();
 
     /* Combat Happens and HP gets deducted */
