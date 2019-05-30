@@ -71,6 +71,7 @@ function damagePlayer(damage) {
     alert("You have been damaged!");
 }
 
+
 function dragstartHandler(e) {
     e.dataTransfer.setData("id", e.target.id);
 }
@@ -93,6 +94,15 @@ function dropHandler(e) {
     dragged.style.cursor = "not-allowed";
 }
 
+
+function iniDragAndDrop() {
+    let combatSlots = document.querySelectorAll(".playerCards> div");
+    for (let slot of combatSlots) {
+        slot.addEventListener('drop', dropHandler);
+        slot.addEventListener('dragover', dragoverHandler);
+    }
+}
+
 function main() {
     // TODO randomize cards
     for (let card of cards.slice(0,4)) {
@@ -102,6 +112,8 @@ function main() {
     let playerHealth = 100;
 
     displayHealth(playerHealth);
+
+    iniDragAndDrop();
 
     /* Combat Happens and HP gets deducted */
     let soulTap = document.createElement("button");
