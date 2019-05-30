@@ -116,9 +116,10 @@ function main() {
 
     /* Combat Happens and HP gets deducted */
     let soulTap = document.createElement("button");
-    soulTap.textContent = "SoulTap";
+    soulTap.textContent = "PA!";
+    soulTap.className = "fight";
     soulTap.addEventListener("click", dealDamage);
-    document.querySelector(".fight").appendChild(soulTap);
+    document.querySelector(".playerCards").appendChild(soulTap);
 }
 
 main();
