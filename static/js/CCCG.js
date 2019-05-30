@@ -95,6 +95,11 @@ function damagePlayer(damage) {
     alert("You have been damaged!");
 }
 
+function damageEnemy(damage) {
+    let currentHealth = document.querySelector("#enemy-health");
+    currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
+    displayEnemyHealth();
+}
 
 function dragstartHandler(e) {
     e.dataTransfer.setData("id", e.target.id);
@@ -129,6 +134,7 @@ function iniDragAndDrop() {
 
 function defendingPlayer(attacker, defender) {
         let damageToPlayer = 0,
+            damageToEnemy = 0,
         attackHp = parseInt(attacker.dataset.health),
         attackDmg = parseInt(attacker.dataset.power),
         defendHp = 0,
@@ -152,6 +158,7 @@ function defendingPlayer(attacker, defender) {
 
         if (defendDmg >= attackHp) {
             attackHp = (attackHp - defendDmg);
+            damageToEnemy = (attackHp * -1)
         } else if (defendDmg < attackHp) {
             attackHp = (attackHp - defendDmg);
         }
@@ -177,7 +184,7 @@ function defendingPlayer(attacker, defender) {
         }
         attacker.dataset.health = attackHp.toString();
 
-        return damageToPlayer;
+        return [damageToPlayer, damageToEnemy];
 }
 
 
@@ -191,14 +198,20 @@ function doBattlePhase() {
         defenderThree = document.querySelector("#position-3").firstChild,
         defenderFour = document.querySelector("#position-4").firstChild;
 
-    let damageToPlayer = 0;
-    damageToPlayer += defendingPlayer(attackerOne, defenderOne);
-    damageToPlayer += defendingPlayer(attackerTwo, defenderTwo);
-    damageToPlayer += defendingPlayer(attackerThree, defenderThree);
-    damageToPlayer += defendingPlayer(attackerFour, defenderFour);
-    console.log(damageToPlayer);
+
+    let firstPhase = defendingPlayer(attackerOne, defenderOne),
+    secondPhase = defendingPlayer(attackerTwo, defenderTwo),
+    thirdPhase = defendingPlayer(attackerThree, defenderThree),
+    fourthPhase = defendingPlayer(attackerFour, defenderFour);
+
+    let damageToPlayer = firstPhase[0]+secondPhase[0]+thirdPhase[0]+fourthPhase[0];
+    let damageToEnemy = firstPhase[1]+secondPhase[1]+thirdPhase[1]+fourthPhase[1];
+
     if (damageToPlayer > 0) {
         damagePlayer(damageToPlayer)
+    }
+    if (damageToEnemy > 0) {
+        damageEnemy(damageToEnemy)
     }
 
     for (let i = 0; i < 4; i++) {
@@ -218,14 +231,6 @@ function iniBattle() {
 
 
 function main() {
-    // TODO randomize cards
-    // for (let card of cards.slice(0, 4)) {
-    //     createCard(card, ".inHandCards")
-    // }
-    // for (let enemyCard of enemyCards.slice(0, 4)) {
-    //     createCard(enemyCard, ".enemyCards");
-    // }
-    // let randomCard = cards[Math.floor(Math.random()*cards.length)];
     for (let i = 0; i < 4; i++) {
         createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
     }
