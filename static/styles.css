@@ -23,7 +23,8 @@
 .playerImage {
     height: 200px;
     width: 200px;
-    margin-left: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
 
 }
 
@@ -38,6 +39,42 @@
     -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.71);
 }
 
+.mana {
+    width: 150px;
+    height: 150px;
+    color: gold;
+    background-image: url("https://avatars0.githubusercontent.com/u/22430704?s=200&v=4");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    line-height: 140px;
+    font-size: 80px;
+    font-weight: bolder;
+    -webkit-text-stroke: 2px goldenrod;
+    position: relative;
+    left: 10px;
+    top: 30px;
+}
+
+.enemyMana {
+    width: 150px;
+    height: 150px;
+    color: gold;
+    background-image: url("https://avatars0.githubusercontent.com/u/22430704?s=200&v=4");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    line-height: 140px;
+    font-size: 80px;
+    font-weight: bolder;
+    -webkit-text-stroke: 2px goldenrod;
+    position: relative;
+    left: 10px;
+    top: 30px;
+}
+
 body {
     background: url("https://cdn.discordapp.com/attachments/582543746680225802/583624228977246210/20190530_135252.jpg");
     background-size: cover;
@@ -45,14 +82,16 @@ body {
     background-repeat: no-repeat;
 }
 
-hr {
+hr.large {
     border: none;
+    height: 10px;
     background-color: saddlebrown;
+    opacity: 0.3;
 }
 
 .fight {
     position: relative;
-    left: 100px;
+    left: 245px;
     top: 50px;
     background-color: darkred;
     color: #FFFFFF;
@@ -123,7 +162,7 @@ hr {
 #player-health {
     width: 150px;
     height: 150px;
-    color: red;
+    color: white;
     background-image: url("https://i.imgur.com/Jqcu9mx.gif");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -140,6 +179,33 @@ hr {
 }
 
 #player-health img {
+    position: relative;
+    top: -95%;
+    width: 150px;
+    height: 150px;
+    float: top;
+}
+
+#enemy-health {
+    width: 150px;
+    height: 150px;
+    color: white;
+    background-image: url("https://i.imgur.com/Jqcu9mx.gif");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    line-height: 140px;
+    font-size: 35px;
+    font-weight: bolder;
+    -webkit-text-stroke: 2px darkred;
+    position: relative;
+    left: 10px;
+    top: 30px;
+
+}
+
+#enemy-health img {
     position: relative;
     top: -95%;
     width: 150px;

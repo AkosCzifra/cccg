@@ -63,8 +63,20 @@ function createCard(cardData, hand) {
     }
 }
 
-function displayHealth() {
+function displayPlayerHealth() {
     let health = document.querySelector("#player-health");
+    let playerHealth = health.dataset.health;
+
+    let image = document.createElement("img");
+    image.src = "https://i.imgur.com/0XwkL3b.png";
+
+    health.textContent = playerHealth;
+    health.appendChild(image);
+    health.style.backgroundSize = `${playerHealth}%`
+}
+
+function displayEnemyHealth() {
+    let health = document.querySelector("#enemy-health");
     let playerHealth = health.dataset.health;
 
     let image = document.createElement("img");
@@ -79,7 +91,7 @@ function displayHealth() {
 function damagePlayer(damage) {
     let currentHealth = document.querySelector("#player-health");
     currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
-    displayHealth();
+    displayPlayerHealth();
     alert("You have been damaged!");
 }
 
@@ -218,7 +230,8 @@ function main() {
         createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
     }
 
-    displayHealth();
+    displayPlayerHealth();
+    displayEnemyHealth();
     iniDragAndDrop();
     iniBattle();
 };
