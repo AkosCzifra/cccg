@@ -63,20 +63,8 @@ function createCard(cardData, hand) {
     }
 }
 
-function displayPlayerHealth() {
-    let health = document.querySelector("#player-health");
-    let playerHealth = health.dataset.health;
-
-    let image = document.createElement("img");
-    image.src = "https://i.imgur.com/0XwkL3b.png";
-
-    health.textContent = playerHealth;
-    health.appendChild(image);
-    health.style.backgroundSize = `${playerHealth * 2}%`
-}
-
-function displayEnemyHealth() {
-    let health = document.querySelector("#enemy-health");
+function displayHealth(opponent) {
+    let health = document.querySelector(opponent);
     let playerHealth = health.dataset.health;
 
     let image = document.createElement("img");
@@ -88,17 +76,11 @@ function displayEnemyHealth() {
 }
 
 
-function damagePlayer(damage) {
-    let currentHealth = document.querySelector("#player-health");
+function damageOpponent(damage, opponent) {
+    let currentHealth = document.querySelector(opponent);
     currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
-    displayPlayerHealth();
-    alert("You have been damaged!");
-}
-
-function damageEnemy(damage) {
-    let currentHealth = document.querySelector("#enemy-health");
-    currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
-    displayEnemyHealth();
+    displayHealth(opponent);
+    if (opponent === "#player-health") {alert("You have taken damage!");}
 }
 
 function dragstartHandler(e) {
@@ -118,12 +100,12 @@ function dropHandler(e) {
     e.preventDefault();
     let id = e.dataTransfer.getData("id");
     let dragged = document.getElementById(id);
-    if (e.target.childElementCount > 0) {}
+    if (e.target.innerHTML.trim() !== "") {
+        alert("スワイパーノースワイピン！！")}
     else {
     e.target.appendChild(dragged);
     dragged.setAttribute("draggable", "false");
-    dragged.style.cursor = "not-allowed";
-    }
+    dragged.style.cursor = "not-allowed";}
 }
 
 
@@ -152,7 +134,7 @@ function winCheck(counter){
     else if (enemyHealth <= 0) {
         alert("You successfully passed your PA, well done!");
         enemy.dataset.health = "50";
-        displayEnemyHealth();
+        displayHealth("#enemy-health");
         return 1;}
 }
 
@@ -232,10 +214,10 @@ function doBattlePhase() {
     let damageToEnemy = firstPhase[1]+secondPhase[1]+thirdPhase[1]+fourthPhase[1];
 
     if (damageToPlayer > 0) {
-        damagePlayer(damageToPlayer)
+        damageOpponent(damageToPlayer, "#player-health")
     }
     if (damageToEnemy > 0) {
-        damageEnemy(damageToEnemy)
+        damageOpponent(damageToEnemy, "#enemy-health")
     }
 
     let player = document.querySelector("#player-health"),
@@ -267,8 +249,8 @@ function main() {
         createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
     }
 
-    displayPlayerHealth();
-    displayEnemyHealth();
+    displayHealth("#player-health");
+    displayHealth("#enemy-health");
     iniDragAndDrop();
     iniBattle();
 };
