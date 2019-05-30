@@ -132,6 +132,27 @@ function iniDragAndDrop() {
     }
 }
 
+function winCheck(counter){
+    if (counter === "4") {
+        alert("Congrats, you finished Codecool! TIME TO GET WORKIN'!");
+        document.location.reload(true)}
+    else {}
+    let playerHealth = parseInt(document.querySelector("#player-health").dataset.health),
+        enemy = document.querySelector("#enemy-health"),
+        enemyHealth = parseInt(enemy.dataset.health);
+    if (playerHealth <= 0 && enemyHealth <= 0) {
+        alert("You both failed, you got 5 seconds to leave the building.");
+        return 0;}
+    else if (playerHealth <= 0) {
+        alert("You did not pass your PA, you have failed miserably!");
+        document.location.reload(true);}
+    else if (enemyHealth <= 0) {
+        alert("You successfully passed your PA, well done!");
+        enemy.dataset.health = "50";
+        displayEnemyHealth();
+        return 1;}
+}
+
 function defendingPlayer(attacker, defender) {
         let damageToPlayer = 0,
             damageToEnemy = 0,
@@ -213,6 +234,11 @@ function doBattlePhase() {
     if (damageToEnemy > 0) {
         damageEnemy(damageToEnemy)
     }
+
+    let player = document.querySelector("#player-health"),
+    counter = winCheck(player.dataset.counter);
+    player.dataset.counter = (parseInt(player.dataset.counter) + counter).toString();
+
 
     for (let i = 0; i < 4; i++) {
         createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
