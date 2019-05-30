@@ -7,9 +7,8 @@ function createCard(cardData, hand) {
         card.addEventListener("dragstart", function () {
         dragstartHandler(event)
     }, false);}
-    else {card.setAttribute("draggable", "false");}
+    else if (hand === ".enemyCards") {card.setAttribute("draggable", "false"); card.style.cursor = "not-allowed";}
     card.className = "playing-card";
-    card.setAttribute("draggable", "true");
     let cardName = document.createElement("div");
     cardName.textContent = cardData.name;
     cardName.className = "card-name";
@@ -38,7 +37,7 @@ function createCard(cardData, hand) {
     card.dataset.health = cardData.health;
     card.dataset.mana = cardData.mana;
 
-        let cardSlots = document.querySelectorAll(`${hand} > div`);
+    let cardSlots = document.querySelectorAll(`${hand} > div`);
     let emptySlot = null;
     for (let slot of cardSlots) {
         if (slot.innerHTML.trim() === "") {
@@ -106,14 +105,22 @@ function iniDragAndDrop() {
 
 function defendingPlayer(attacker, defender) {
     try {
-        let damageToPlayer = 0;
-        let attackDmg = parseInt(attacker.dataset.power);
-        let defendHp = parseInt(defender.dataset.health);
-            if (attackDmg >= defendHp)
+        let damageToPlayer = 0,
+            attackHp = parseInt(attacker.dataset.health),
+            attackDmg = parseInt(attacker.dataset.power),
+            defendHp = parseInt(defender.dataset.health),
+            defendDmg = parseInt(defender.dataset.power);
+        if (attackDmg >= defendHp)
         {defendHp = (defendHp - attackDmg); damageToPlayer = (defendHp * -1) }
-        else if (attacker.dataset.power < defendHp) {defendHp = (defendHp - attackDmg);}
+        else if (attackDmg < defendHp) {defendHp = (defendHp - attackDmg);}
+
+        if (defendDmg >= attackHp) {attackHp = (attackHp - defendDmg);}
+        else if (defendDmg < attackHp) {attackHp = (attackHp - defendDmg);}
+
+        if (attackHp <= 0) {attacker.parentElement.removeChild(attacker)}
         if (defendHp <= 0) {defender.parentElement.removeChild(defender)}
         defender.dataset.health = defendHp.toString();
+        attacker.dataset.health = attackHp.toString();
         return damageToPlayer;
     }
     catch (error) {
@@ -153,7 +160,7 @@ function doBattlePhase() {
 }
 
 function iniBattle() {
-    const fightButton = document.querySelector(".fight-button");
+    const fightButton = document.querySelector(".fight");
     fightButton.addEventListener("click", doBattlePhase);
 }
 
@@ -164,13 +171,12 @@ function main() {
         createCard(card, ".inHandCards")
     }
     for (let enemyCard of enemyCards.slice(0, 4)) {
-        createCard(enemyCard, ".enemyCards")
+        createCard(enemyCard, ".enemyCards");
     }
 
     displayHealth();
     iniDragAndDrop();
     iniBattle();
-
-}
+};
 
 main();

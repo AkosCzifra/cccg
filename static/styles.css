@@ -1,15 +1,15 @@
 .cccg {
     height: 160px;
     width: 110px;
-    padding: 3px;
+    padding: 5px;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 80px;
 
-    background-color: burlywood;
+    background-color: rgba(0, 0, 0, 0.45);
     background-clip: border-box;
-
-    border: 2px solid darkred;
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.71);
+    /*border: 2px solid darkred;*/
     border-radius: .5rem;
 
     /*word-wrap: break-word;*/
@@ -34,10 +34,12 @@
     height: 200px;
     width: 200px;
     border-radius: 70%;
+    border: 4px solid #021a40;
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.71);
 }
 
 body {
-    background: url("https://mondrian.mashable.com/uploads%252Fcard%252Fimage%252F778575%252F7c05ce95-92d8-4f9b-87d7-7de65c97fbce.jpg%252F950x534__filters%253Aquality%252890%2529.jpg?signature=O_MA4nGR2FpElykY8ClbHI9HiZs=&source=https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com");
+    background: url("https://cdn.discordapp.com/attachments/582543746680225802/583624228977246210/20190530_135252.jpg");
     background-size: cover;
     position: relative;
     background-repeat: no-repeat;
@@ -45,7 +47,23 @@ body {
 
 hr {
     border: none;
-    background-color: deepskyblue;
+    background-color: saddlebrown;
+}
+
+.fight {
+    position: relative;
+    left: 100px;
+    top: 50px;
+    background-color: darkred;
+    color: #FFFFFF;
+    padding: 20px;
+    height: 80px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 10px;
+    font-family: fantasy;
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.71);
 }
 
 /* Playing Card CSS FROM HERE */
@@ -79,8 +97,8 @@ hr {
 
 .playing-card .mana-number {
     position: relative;
-    left: 0;
-    top: -95%;
+    left: 1%;
+    top: -96%;
     color: blue;
 }
 
@@ -95,7 +113,8 @@ hr {
 .playing-card .card-name {
     position: relative;
     top: -19%;
-    font-size: xx-small;
+    font-size: 8px;
+    color: red;
 }
 
 /* Playing Card CSS ENDS HERE */
@@ -104,7 +123,7 @@ hr {
     width: 150px;
     height: 150px;
     color: red;
-    background-image:url("https://i.imgur.com/Jqcu9mx.gif");
+    background-image: url("https://i.imgur.com/Jqcu9mx.gif");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -113,6 +132,10 @@ hr {
     font-size: 35px;
     font-weight: bolder;
     -webkit-text-stroke: 2px darkred;
+    position: relative;
+    left: 10px;
+    top: 30px;
+
 }
 
 #player-health img {
