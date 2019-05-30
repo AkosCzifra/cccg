@@ -126,7 +126,7 @@ function winCheck(counter){
         enemy = document.querySelector("#enemy-health"),
         enemyHealth = parseInt(enemy.dataset.health);
     if (playerHealth <= 0 && enemyHealth <= 0) {
-        alert("You both failed, you got 5 seconds to leave the building.");
+        alert("You both failed, you have 5 seconds to get out.");
         return 0;}
     else if (playerHealth <= 0) {
         alert("You did not pass your PA, you have failed miserably!");
