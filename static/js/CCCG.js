@@ -1,13 +1,25 @@
+function idGenerator(length) {
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
 function createCard(cardData, hand) {
     let card = document.createElement("div");
-    card.id = "card" + cardData.name;
+    card.id = idGenerator(15);
     if (hand === ".inHandCards") {
         card.setAttribute("draggable", "true");
         card.addEventListener("dragstart", function () {
-        dragstartHandler(event)
-    }, false);}
-    else if (hand === ".enemyCards") {card.setAttribute("draggable", "false"); card.style.cursor = "not-allowed";}
+            dragstartHandler(event)
+        }, false);
+    } else if (hand === ".enemyCards") {
+        card.setAttribute("draggable", "false");
+        card.style.cursor = "not-allowed";
+    }
     card.className = "playing-card";
     let cardName = document.createElement("div");
     cardName.textContent = cardData.name;
@@ -110,22 +122,33 @@ function defendingPlayer(attacker, defender) {
             attackDmg = parseInt(attacker.dataset.power),
             defendHp = parseInt(defender.dataset.health),
             defendDmg = parseInt(defender.dataset.power);
-        if (attackDmg >= defendHp)
-        {defendHp = (defendHp - attackDmg); damageToPlayer = (defendHp * -1) }
-        else if (attackDmg < defendHp) {defendHp = (defendHp - attackDmg);}
+        if (attackDmg >= defendHp) {
+            defendHp = (defendHp - attackDmg);
+            damageToPlayer = (defendHp * -1)
+        } else if (attackDmg < defendHp) {
+            defendHp = (defendHp - attackDmg);
+        }
 
-        if (defendDmg >= attackHp) {attackHp = (attackHp - defendDmg);}
-        else if (defendDmg < attackHp) {attackHp = (attackHp - defendDmg);}
+        if (defendDmg >= attackHp) {
+            attackHp = (attackHp - defendDmg);
+        } else if (defendDmg < attackHp) {
+            attackHp = (attackHp - defendDmg);
+        }
 
-        if (attackHp <= 0) {attacker.parentElement.removeChild(attacker)}
-        if (defendHp <= 0) {defender.parentElement.removeChild(defender)}
+        if (attackHp <= 0) {
+            attacker.parentElement.removeChild(attacker)
+        }
+        if (defendHp <= 0) {
+            defender.parentElement.removeChild(defender)
+        }
         defender.dataset.health = defendHp.toString();
         attacker.dataset.health = attackHp.toString();
         return damageToPlayer;
+    } catch (error) {
+        console.error("nothing happened keep playing!")
+    } finally {
+        return 0;
     }
-    catch (error) {
-        console.error("nothing happened keep playing!")}
-    finally {return 0;}
 
 }
 
@@ -136,8 +159,13 @@ function doBattlePhase() {
     for (let defender of defenders) {
         if (defender.firstChild == null) {
             for (let card of enemyCards) {
-                noDefenderDamage += card.power;}}}
-    if (noDefenderDamage > 0) {damagePlayer(noDefenderDamage / 4)}
+                noDefenderDamage += card.power;
+            }
+        }
+    }
+    if (noDefenderDamage > 0) {
+        damagePlayer(noDefenderDamage / 4)
+    }
 
     let attackerOne = document.querySelector("#enemy-card-one").firstChild,
         attackerTwo = document.querySelector("#enemy-card-two").firstChild,
@@ -154,10 +182,19 @@ function doBattlePhase() {
     damageToPlayer += defendingPlayer(attackerThree, defenderThree);
     damageToPlayer += defendingPlayer(attackerFour, defenderFour);
     console.log(damageToPlayer);
-    if (damageToPlayer > 0) {damagePlayer(damageToPlayer)}
+    if (damageToPlayer > 0) {
+        damagePlayer(damageToPlayer)
+    }
 
+    for (let i = 0; i < 4; i++) {
+        createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
+    }
+    for (let i = 0; i < 4; i++) {
+        createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
+    }
 
 }
+
 
 function iniBattle() {
     const fightButton = document.querySelector(".fight");
@@ -167,11 +204,18 @@ function iniBattle() {
 
 function main() {
     // TODO randomize cards
-    for (let card of cards.slice(0, 4)) {
-        createCard(card, ".inHandCards")
+    // for (let card of cards.slice(0, 4)) {
+    //     createCard(card, ".inHandCards")
+    // }
+    // for (let enemyCard of enemyCards.slice(0, 4)) {
+    //     createCard(enemyCard, ".enemyCards");
+    // }
+    // let randomCard = cards[Math.floor(Math.random()*cards.length)];
+    for (let i = 0; i < 4; i++) {
+        createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
     }
-    for (let enemyCard of enemyCards.slice(0, 4)) {
-        createCard(enemyCard, ".enemyCards");
+    for (let i = 0; i < 4; i++) {
+        createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
     }
 
     displayHealth();
