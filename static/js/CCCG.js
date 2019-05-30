@@ -1,5 +1,8 @@
 function createCard(name, power, image, health, mana, position){
     let card = document.createElement("div");
+    card.id = "card";
+    card.setAttribute("draggable", "true");
+    card.addEventListener("dragstart", function () {dragstartHandler(event)}, false);
     card.className = "playing-card";
     let cardName = document.createElement("div");
     cardName.textContent = name;
@@ -64,4 +67,24 @@ function damagePlayer(damage) {
     playerHealth = playerHealth - damage;
     displayHealth(playerHealth);
     alert("You have been damaged!");
+}
+
+function dragstartHandler(e) {
+ e.dataTransfer.setData("id", e.target.id);
+}
+
+function dragoverHandler(e) {
+  e.preventDefault();
+  if (e.target.getAttribute("draggable") === true) {
+      e.dataTransfer.dropEffect = "none";}
+  else {e.dataTransfer.dropEffect = "all";}
+}
+
+function dropHandler (e) {
+  e.preventDefault();
+  let id = e.dataTransfer.getData("id");
+  let dragged = document.getElementById(id);
+  e.target.appendChild(dragged);
+  dragged.setAttribute("draggable", "false");
+  dragged.style.cursor = "not-allowed";
 }

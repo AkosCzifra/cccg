@@ -1,21 +1,23 @@
 .cccg {
     height: 160px;
+    width: 110px;
+    padding: 3px;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 80px;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
+
     background-color: #fff;
     background-clip: border-box;
-    position: relative;
-    display: flex;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
 
-    /*width: 100%;*/
-    /*min-height: 1px;*/
-    padding: 5px;
+    border: 2px solid darkred;
+    border-radius:.5rem;
+
+    /*word-wrap: break-word;*/
+    /*position: relative;*/
+    /*display: flex;*/
+    /*max-width: 8.333333%;*/
+    /*flex-direction: column;*/
+    /*min-width: 0;*/
 
 }
 
@@ -28,6 +30,7 @@
 .playing-card {
     border-style: solid;
     border-width: 2px;
+    border-radius: .5rem;
     width: 100px;
     height: 150px;
     background-image: url("https://i.imgur.com/XERMOiE.png");
@@ -38,7 +41,7 @@
 .playing-card .power-number {
     position: relative;
     left: -40%;
-    top: 128px;
+    top: 124px;
     display: inline;
     color: dimgray;
 }
