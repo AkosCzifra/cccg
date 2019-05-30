@@ -94,48 +94,14 @@ function dropHandler(e) {
 }
 
 function main() {
-    let cards = [
-        {
-            "name": "Nemo",
-            "power": 2,
-            "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
-            "health": 6,
-            "mana": 9,
-        },
-        {
-            "name": "Nemo",
-            "power": 2,
-            "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
-            "health": 6,
-            "mana": 9,
-        },
-        {
-            "name": "Nemo",
-            "power": 2,
-            "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
-            "health": 6,
-            "mana": 9,
-        },
-        {
-            "name": "Nemo",
-            "power": 2,
-            "image": "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
-            "health": 6,
-            "mana": 9,
-        },
-    ];
-
     // TODO randomize cards
-
     for (let card of cards.slice(0,4)) {
         createCard(card)
     }
 
     let playerHealth = 100;
 
-
     displayHealth(playerHealth);
-
 
     /* Combat Happens and HP gets deducted */
     let soulTap = document.createElement("button");
