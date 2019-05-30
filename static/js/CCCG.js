@@ -1,6 +1,7 @@
 function createCard(name, power, image, health, mana){
     let card = document.createElement("div");
     card.className = "playing-card";
+    card.setAttribute("draggable", "true");
     let cardName = document.createElement("div");
     cardName.textContent = name;
     cardName.className = "card-name";
@@ -27,6 +28,7 @@ function createCard(name, power, image, health, mana){
 }
 
 createCard(
+
     "Nemo",
     2,
     "https://pbs.twimg.com/profile_images/988980087147053058/uUQiBEyG_400x400.jpg",
