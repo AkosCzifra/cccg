@@ -72,7 +72,7 @@ function displayPlayerHealth() {
 
     health.textContent = playerHealth;
     health.appendChild(image);
-    health.style.backgroundSize = `${playerHealth}%`
+    health.style.backgroundSize = `${playerHealth * 2}%`
 }
 
 function displayEnemyHealth() {
@@ -84,7 +84,7 @@ function displayEnemyHealth() {
 
     health.textContent = playerHealth;
     health.appendChild(image);
-    health.style.backgroundSize = `${playerHealth}%`
+    health.style.backgroundSize = `${playerHealth * 2}%`
 }
 
 
