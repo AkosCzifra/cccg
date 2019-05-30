@@ -5,67 +5,43 @@
     <title>CC-CG</title>
     <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="static/js/cards.js"></script>
     <script src="static/js/CCCG.js" defer></script>
 </head>
 <body>
-<div id="music-holder"></div>
 <div id="app">
     <div class="row enemyCards">
-        <div class="cccg">
-
-        </div>
-        <div class="cccg">
-
-        </div>
-        <div class="cccg">
-
-        </div>
-        <div class="cccg">
-
-        </div>
+        <div class="cccg"></div>
+        <div class="cccg"></div>
+        <div class="cccg"></div>
+        <div class="cccg"></div>
         <div class="playerImage">
             <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/SubZeroMKXrender.png/220px-SubZeroMKXrender.png">
         </div>
     </div>
 
     <div class="row playerCards">
-        <div class="cccg" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
-        </div>
-        <div class="cccg" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
-        </div>
-        <div class="cccg" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
-        </div>
-        <div class="cccg" ondrop="dropHandler(event)" ondragover="dragoverHandler(event)">
-        </div>
+        <div class="cccg"></div>
+        <div class="cccg"></div>
+        <div class="cccg"></div>
+        <div class="cccg"></div>
         <button class="fight">F<br>I<br>G<br>H<br>T<br></button>
     </div>
+
     <hr>
     <div class="row inHandCards">
-        <div class="cccg" id="first-card">
+        <div class="cccg" id="first-card"></div>
+        <div class="cccg" id="second-card"></div>
+        <div class="cccg" id="third-card"></div>
+        <div class="cccg" id="fourth-card"></div>
 
-        </div>
-        <div class="cccg" id="second-card">
-
-        </div>
-        <div class="cccg" id="third-card">
-
-        </div>
-        <div class="cccg" id="fourth-card">
-
-        </div>
         <div class="playerImage">
             <img src="https://vignette.wikia.nocookie.net/mkwikia/images/5/59/Kitana_mk11.png/revision/latest?cb=20190413032708">
         </div>
-        <div id="player-health">
 
-        </div>
-        <div class="mana">
-            MANA
-        </div>
-
+        <div id="player-health" data-health="100"></div>
+        <div class="mana">MANA</div>
     </div>
-
-
 </div>
 </body>
 </html>
