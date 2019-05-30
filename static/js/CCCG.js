@@ -50,7 +50,6 @@ function createCard(cardData, hand) {
     card.dataset.mana = cardData.mana;
 
     let cardSlots = document.querySelectorAll(`${hand} > div`);
-    console.log(cardSlots);
     let emptySlot = null;
     for (let slot of cardSlots) {
         if (slot.innerHTML.trim() === "") {
@@ -64,20 +63,8 @@ function createCard(cardData, hand) {
     }
 }
 
-function displayPlayerHealth() {
-    let health = document.querySelector("#player-health");
-    let playerHealth = health.dataset.health;
-
-    let image = document.createElement("img");
-    image.src = "https://i.imgur.com/0XwkL3b.png";
-
-    health.textContent = playerHealth;
-    health.appendChild(image);
-    health.style.backgroundSize = `${playerHealth * 2}%`
-}
-
-function displayEnemyHealth() {
-    let health = document.querySelector("#enemy-health");
+function displayHealth(opponent) {
+    let health = document.querySelector(opponent);
     let playerHealth = health.dataset.health;
 
     let image = document.createElement("img");
@@ -89,17 +76,11 @@ function displayEnemyHealth() {
 }
 
 
-function damagePlayer(damage) {
-    let currentHealth = document.querySelector("#player-health");
+function damageOpponent(damage, opponent) {
+    let currentHealth = document.querySelector(opponent);
     currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
-    displayPlayerHealth();
-    alert("You have been damaged!");
-}
-
-function damageEnemy(damage) {
-    let currentHealth = document.querySelector("#enemy-health");
-    currentHealth.dataset.health = (parseInt(currentHealth.dataset.health) - damage).toString();
-    displayEnemyHealth();
+    displayHealth(opponent);
+    if (opponent === "#player-health") {alert("You have taken damage!");}
 }
 
 function dragstartHandler(e) {
@@ -119,94 +100,97 @@ function dropHandler(e) {
     e.preventDefault();
     let id = e.dataTransfer.getData("id");
     let dragged = document.getElementById(id);
+    if (e.target.innerHTML.trim() !== "") {
+        alert("スワイパーノースワイピン！！")}
+    else {
     e.target.appendChild(dragged);
     dragged.setAttribute("draggable", "false");
-    dragged.style.cursor = "not-allowed";
+    dragged.style.cursor = "not-allowed";}
 }
 
 
 function iniDragAndDrop() {
     let combatSlots = document.querySelectorAll(".playerCards> div");
-    for (let slot of combatSlots) {
+    for (let slot of  combatSlots) {
         slot.addEventListener('drop', dropHandler);
         slot.addEventListener('dragover', dragoverHandler);
     }
 }
 
-function winCheck(counter) {
+function winCheck(counter){
     if (counter === "4") {
         alert("Congrats, you finished Codecool! TIME TO GET WORKIN'!");
-        document.location.reload(true)
-    } else {
-    }
+        document.location.reload(true)}
+    else {}
     let playerHealth = parseInt(document.querySelector("#player-health").dataset.health),
         enemy = document.querySelector("#enemy-health"),
         enemyHealth = parseInt(enemy.dataset.health);
     if (playerHealth <= 0 && enemyHealth <= 0) {
-        alert("You both failed, you got 5 seconds to leave the building.");
-        return 0;
-    } else if (playerHealth <= 0) {
+        alert("You both failed, you have 5 seconds to get out.");
+        return 0;}
+    else if (playerHealth <= 0) {
         alert("You did not pass your PA, you have failed miserably!");
-        document.location.reload(true);
-    } else if (enemyHealth <= 0) {
+        document.location.reload(true);}
+    else if (enemyHealth <= 0) {
         alert("You successfully passed your PA, well done!");
         enemy.dataset.health = "50";
-        displayEnemyHealth();
-        return 1;
-    }
+        displayHealth("#enemy-health");
+        return 1;}
 }
 
-function defendingPlayer(attacker, defender) {
-    let damageToPlayer = 0,
-        damageToEnemy = 0,
+function calculateBattle(attacker, defender) {
+        let damageToPlayer = 0,
+            damageToEnemy = 0,
         attackHp = parseInt(attacker.dataset.health),
         attackDmg = parseInt(attacker.dataset.power),
         defendHp = 0,
         defendDmg = 0;
-    if (defender == null) {
-        defendHp = 0
-    } else {
-        defendHp = parseInt(defender.dataset.health);
-    }
-    if (defender == null) {
-        defendDmg = 0
-    } else {
-        defendDmg = parseInt(defender.dataset.power);
-    }
-    if (attackDmg >= defendHp) {
-        defendHp = (defendHp - attackDmg);
-        damageToPlayer = (defendHp * -1)
-    } else if (attackDmg < defendHp) {
-        defendHp = (defendHp - attackDmg);
-    }
+        if (defender == null){
+            defendHp = 0}
+        else {
+            defendHp = parseInt(defender.dataset.health);
+        }
+        if (defender == null) {
+            defendDmg = 0}
+        else {
+            defendDmg = parseInt(defender.dataset.power);
+        }
+        if (attackDmg >= defendHp) {
+            defendHp = (defendHp - attackDmg);
+            damageToPlayer = (defendHp * -1)
+        } else if (attackDmg < defendHp) {
+            defendHp = (defendHp - attackDmg);
+        }
 
-    if (defendDmg >= attackHp) {
-        attackHp = (attackHp - defendDmg);
-        damageToEnemy = (attackHp * -1)
-    } else if (defendDmg < attackHp) {
-        attackHp = (attackHp - defendDmg);
-    }
+        if (defendDmg >= attackHp) {
+            attackHp = (attackHp - defendDmg);
+            damageToEnemy = (attackHp * -1)
+        } else if (defendDmg < attackHp) {
+            attackHp = (attackHp - defendDmg);
+        }
 
-    if (attackHp <= 0) {
-        attacker.parentElement.removeChild(attacker)
-    } else {
-        attacker.children[2].innerHTML = attackHp.toString();
-    }
+        if (attackHp <= 0) {
+            attacker.parentElement.removeChild(attacker)
+        }
+        else{
+            attacker.children[2].innerHTML = attackHp.toString();
+        }
 
-    if (defender == null) {
-    } else if (defendHp <= 0) {
-        defender.parentElement.removeChild(defender)
-    } else {
-        defender.children[2].innerHTML = defendHp.toString();
-    }
+        if (defender == null) {}
+        else if (defendHp <= 0) {
+            defender.parentElement.removeChild(defender)
+        }
+        else {
+            defender.children[2].innerHTML = defendHp.toString();
+        }
 
-    if (defender == null) {
-    } else {
-        defender.dataset.health = defendHp.toString();
-    }
-    attacker.dataset.health = attackHp.toString();
+        if (defender == null) {}
+        else {
+            defender.dataset.health = defendHp.toString();
+        }
+        attacker.dataset.health = attackHp.toString();
 
-    return [damageToPlayer, damageToEnemy];
+        return [damageToPlayer, damageToEnemy];
 }
 
 
@@ -221,23 +205,23 @@ function doBattlePhase() {
         defenderFour = document.querySelector("#position-4").firstChild;
 
 
-    let firstPhase = defendingPlayer(attackerOne, defenderOne),
-        secondPhase = defendingPlayer(attackerTwo, defenderTwo),
-        thirdPhase = defendingPlayer(attackerThree, defenderThree),
-        fourthPhase = defendingPlayer(attackerFour, defenderFour);
+    let firstPhase = calculateBattle(attackerOne, defenderOne),
+    secondPhase = calculateBattle(attackerTwo, defenderTwo),
+    thirdPhase = calculateBattle(attackerThree, defenderThree),
+    fourthPhase = calculateBattle(attackerFour, defenderFour);
 
-    let damageToPlayer = firstPhase[0] + secondPhase[0] + thirdPhase[0] + fourthPhase[0];
-    let damageToEnemy = firstPhase[1] + secondPhase[1] + thirdPhase[1] + fourthPhase[1];
+    let damageToPlayer = firstPhase[0]+secondPhase[0]+thirdPhase[0]+fourthPhase[0];
+    let damageToEnemy = firstPhase[1]+secondPhase[1]+thirdPhase[1]+fourthPhase[1];
 
     if (damageToPlayer > 0) {
-        damagePlayer(damageToPlayer)
+        damageOpponent(damageToPlayer, "#player-health")
     }
     if (damageToEnemy > 0) {
-        damageEnemy(damageToEnemy)
+        damageOpponent(damageToEnemy, "#enemy-health")
     }
 
     let player = document.querySelector("#player-health"),
-        counter = winCheck(player.dataset.counter);
+    counter = winCheck(player.dataset.counter);
     player.dataset.counter = (parseInt(player.dataset.counter) + counter).toString();
 
 
@@ -265,8 +249,8 @@ function main() {
         createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
     }
 
-    displayPlayerHealth();
-    displayEnemyHealth();
+    displayHealth("#player-health");
+    displayHealth("#enemy-health");
     iniDragAndDrop();
     iniBattle();
 };
