@@ -119,6 +119,14 @@ hr.large {
     text-align: center;
 }
 
+ .inHandCards .playing-card:hover {
+    color: #a81015;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+
 .playing-card .power-number {
     position: relative;
     left: -40%;
