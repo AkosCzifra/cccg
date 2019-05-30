@@ -261,6 +261,8 @@ function iniBattle() {
 // let randomNumberForCards = Math.floor(Math.random() * 4);
 
 function main() {
+    let audio = new Audio('music/background.mp3');
+    audio.play();
     for (let i = 0; i < 4; i++) {
         createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
     }
