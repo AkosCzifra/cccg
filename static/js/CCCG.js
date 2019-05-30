@@ -25,6 +25,10 @@ function createCard(name, power, image, health, mana, position){
     card.appendChild(cardMana);
     card.appendChild(cardName);
 
+    card.dataset.power = power;
+    card.dataset.health = health;
+    card.dataset.mana = mana;
+
 
     document.querySelector(position).appendChild(card)
 }
