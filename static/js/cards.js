@@ -90,14 +90,14 @@ let enemyCards = [
         "name": "SQL Inj",
         "power": 4,
         "image": "https://i.imgur.com/snTZVR5.jpg",
-        "health": 4,
+        "health": 2,
         "mana": 4,
     },
     {
         "name": "JS Bug",
         "power": 1,
         "image": "https://i.imgur.com/Zv3OTGz.jpg",
-        "health": 2,
+        "health": 1,
         "mana": 1,
     },
     {
@@ -109,9 +109,9 @@ let enemyCards = [
     },
     {
         "name": "NoCoffee",
-        "power": 4,
+        "power": 3,
         "image": "https://i.imgur.com/qVl2QkJ.jpg",
-        "health": 2,
+        "health": 3,
         "mana": 3,
     },
     {
@@ -123,16 +123,16 @@ let enemyCards = [
     },
     {
         "name": "SyntaxErr",
-        "power": 3,
+        "power": 2,
         "image": "https://i.imgur.com/7opURt1.jpg",
-        "health": 2,
+        "health": 1,
         "mana": 3,
     },
     {
         "name": "No WIFI",
-        "power": 4,
+        "power": 3,
         "image": "https://i.imgur.com/TRhzGlz.jpg",
-        "health": 4,
+        "health": 2,
         "mana": 3,
     },
     {
