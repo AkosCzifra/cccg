@@ -264,8 +264,13 @@ function iniBattle() {
 // let randomNumberForCards = Math.floor(Math.random() * 4);
 
 function main() {
-    let audio = new Audio('music/finalcountdown.mp3');
-    audio.play();
+    let audio = new Audio('/');
+    let promise = audio.play();
+
+    if (promise !== undefined) {
+    promise.then(_ => {
+    }).catch(error => {});
+}
 
 
     iniCardCreation(cards, ".inHandCards");
