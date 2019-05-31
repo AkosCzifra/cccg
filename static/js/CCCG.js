@@ -118,7 +118,7 @@ function dropHandler(e) {
     let id = e.dataTransfer.getData("id");
     let dragged = document.getElementById(id);
     if (e.target.innerHTML.trim() !== "") {
-        alert("スワイパーノースワイピン！！")
+        alert("SUWAIPA NO SWIPIN!!")
     } else {
         e.target.appendChild(dragged);
         dragged.setAttribute("draggable", "false");
@@ -211,6 +211,18 @@ function calculateBattle(attacker, defender) {
     return [damageToPlayer, damageToEnemy];
 }
 
+function iniDamageOpponent(damageType, opponent) {
+        if (damageType > 0) {
+        damageOpponent(damageType, opponent)
+    }
+}
+
+
+function iniCardCreation(list, hand) {
+        for (let i = 0; i < 4; i++) {
+        createCard(list[Math.floor(Math.random() * list.length)], hand)
+    }
+}
 
 function doBattlePhase() {
     let attackerOne = document.querySelector("#enemy-card-1").firstChild,
@@ -231,25 +243,16 @@ function doBattlePhase() {
     let damageToPlayer = firstPhase[0] + secondPhase[0] + thirdPhase[0] + fourthPhase[0];
     let damageToEnemy = firstPhase[1] + secondPhase[1] + thirdPhase[1] + fourthPhase[1];
 
-    if (damageToPlayer > 0) {
-        damageOpponent(damageToPlayer, "#player-health")
-    }
-    if (damageToEnemy > 0) {
-        damageOpponent(damageToEnemy, "#enemy-health")
-    }
+    iniDamageOpponent(damageToPlayer, "#player-health");
+    iniDamageOpponent(damageToEnemy,"#enemy-health");
 
     let player = document.querySelector("#player-health"),
         counter = winCheck(player.dataset.counter);
     player.dataset.counter = (parseInt(player.dataset.counter) + counter).toString();
 
 
-    for (let i = 0; i < 4; i++) {
-        createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
-    }
-    for (let i = 0; i < 4; i++) {
-        createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
-    }
-
+    iniCardCreation(cards, ".inHandCards");
+    iniCardCreation(enemyCards, ".enemyCards");
 }
 
 
@@ -263,17 +266,15 @@ function iniBattle() {
 function main() {
     let audio = new Audio('music/finalcountdown.mp3');
     audio.play();
-    for (let i = 0; i < 4; i++) {
-        createCard(cards[Math.floor(Math.random() * cards.length)], ".inHandCards")
-    }
-    for (let i = 0; i < 4; i++) {
-        createCard(enemyCards[Math.floor(Math.random() * enemyCards.length)], ".enemyCards")
-    }
+
+
+    iniCardCreation(cards, ".inHandCards");
+    iniCardCreation(enemyCards, ".enemyCards");
 
     displayHealth("#player-health");
     displayHealth("#enemy-health");
     iniDragAndDrop();
     iniBattle();
-};
+}
 
 main();
