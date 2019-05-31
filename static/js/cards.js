@@ -59,19 +59,19 @@ let cards = [
         "name": "PyCharm",
         "power": 3,
         "image": "https://i.imgur.com/PNhbL6K.jpg",
-        "health": 3,
+        "health": 4,
         "mana": 3,
     },
     {
         "name": "DevTools",
         "power": 4,
         "image": "https://i.imgur.com/Mc7R81V.jpg",
-        "health": 2,
+        "health": 3,
         "mana": 3,
     },
     {
         "name": "DEMO",
-        "power": 1,
+        "power": 2,
         "image": "https://i.imgur.com/gS8l1Cn.jpg",
         "health": 5,
         "mana": 3,
@@ -83,6 +83,14 @@ let cards = [
         "health": 1,
         "mana": 0,
     },
+    {
+        "name": "HackerMan",
+        "power": 5,
+        "image": "https://i.kym-cdn.com/entries/icons/original/000/021/807/4d7.png",
+        "health": 2,
+        "mana": 3,
+    },
+
 ];
 
 let enemyCards = [
@@ -116,7 +124,7 @@ let enemyCards = [
     },
     {
         "name": "PA",
-        "power": 5,
+        "power": 4,
         "image": "https://i.imgur.com/NgXDHzG.jpg",
         "health": 5,
         "mana": 5,
