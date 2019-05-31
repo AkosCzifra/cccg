@@ -127,7 +127,7 @@ function dropHandler(e) {
 }
 
 
-function iniDragAndDrop() {
+function initDragAndDrop() {
     let combatSlots = document.querySelectorAll(".playerCards> div");
     for (let slot of  combatSlots) {
         slot.addEventListener('drop', dropHandler);
@@ -158,49 +158,42 @@ function winCheck(counter) {
     }
 }
 
+
+
 function calculateBattle(attacker, defender) {
-    let damageToPlayer = 0,
-        damageToEnemy = 0,
+    let damageToPlayer = 0, damageToEnemy = 0,
         attackHp = parseInt(attacker.dataset.health),
         attackDmg = parseInt(attacker.dataset.power),
-        defendHp = 0,
-        defendDmg = 0;
+        defendHp = 0, defendDmg = 0;
+
     if (defender == null) {
-        defendHp = 0
+        defendHp = 0; defendDmg = 0
     } else {
         defendHp = parseInt(defender.dataset.health);
-    }
-    if (defender == null) {
-        defendDmg = 0
-    } else {
-        defendDmg = parseInt(defender.dataset.power);
-    }
+        defendDmg = parseInt(defender.dataset.power);}
+
     if (attackDmg >= defendHp) {
         defendHp = (defendHp - attackDmg);
         damageToPlayer = (defendHp * -1)
     } else if (attackDmg < defendHp) {
-        defendHp = (defendHp - attackDmg);
-    }
+        defendHp = (defendHp - attackDmg);}
 
     if (defendDmg >= attackHp) {
         attackHp = (attackHp - defendDmg);
         damageToEnemy = (attackHp * -1)
     } else if (defendDmg < attackHp) {
-        attackHp = (attackHp - defendDmg);
-    }
+        attackHp = (attackHp - defendDmg);}
 
     if (attackHp <= 0) {
         attacker.parentElement.removeChild(attacker)
     } else {
-        attacker.children[2].innerHTML = attackHp.toString();
-    }
+        attacker.children[2].innerHTML = attackHp.toString();}
 
     if (defender == null) {
     } else if (defendHp <= 0) {
         defender.parentElement.removeChild(defender)
     } else {
-        defender.children[2].innerHTML = defendHp.toString();
-    }
+        defender.children[2].innerHTML = defendHp.toString();}
 
     if (defender == null) {
     } else {
@@ -211,14 +204,14 @@ function calculateBattle(attacker, defender) {
     return [damageToPlayer, damageToEnemy];
 }
 
-function iniDamageOpponent(damageType, opponent) {
+function initDamageOpponent(damageType, opponent) {
         if (damageType > 0) {
         damageOpponent(damageType, opponent)
     }
 }
 
 
-function iniCardCreation(list, hand) {
+function initCardCreation(list, hand) {
         for (let i = 0; i < 4; i++) {
         createCard(list[Math.floor(Math.random() * list.length)], hand)
     }
@@ -243,20 +236,20 @@ function doBattlePhase() {
     let damageToPlayer = firstPhase[0] + secondPhase[0] + thirdPhase[0] + fourthPhase[0];
     let damageToEnemy = firstPhase[1] + secondPhase[1] + thirdPhase[1] + fourthPhase[1];
 
-    iniDamageOpponent(damageToPlayer, "#player-health");
-    iniDamageOpponent(damageToEnemy,"#enemy-health");
+    initDamageOpponent(damageToPlayer, "#player-health");
+    initDamageOpponent(damageToEnemy,"#enemy-health");
 
     let player = document.querySelector("#player-health"),
         counter = winCheck(player.dataset.counter);
     player.dataset.counter = (parseInt(player.dataset.counter) + counter).toString();
 
 
-    iniCardCreation(cards, ".inHandCards");
-    iniCardCreation(enemyCards, ".enemyCards");
+    initCardCreation(cards, ".inHandCards");
+    initCardCreation(enemyCards, ".enemyCards");
 }
 
 
-function iniBattle() {
+function initBattle() {
     const fightButton = document.querySelector(".fight");
     fightButton.addEventListener("click", doBattlePhase);
 }
@@ -273,13 +266,13 @@ function main() {
 }
 
 
-    iniCardCreation(cards, ".inHandCards");
-    iniCardCreation(enemyCards, ".enemyCards");
+    initCardCreation(cards, ".inHandCards");
+    initCardCreation(enemyCards, ".enemyCards");
 
     displayHealth("#player-health");
     displayHealth("#enemy-health");
-    iniDragAndDrop();
-    iniBattle();
+    initDragAndDrop();
+    initBattle();
 }
 
 main();
